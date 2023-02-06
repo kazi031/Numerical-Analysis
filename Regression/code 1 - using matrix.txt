@@ -1,0 +1,11 @@
+x= [2; 3; 2; 3];
+y = [4;6;6;8];
+
+N= length(x);
+
+A= [N, sum(x); sum(x), sum(x.*x)];
+b= [sum(y); sum(x.*y)];
+
+res= inv(A)*b;
+
+plot(x,y,'bs', [0.5,5], res(1)+res(2)*[0.5 5], '-r');

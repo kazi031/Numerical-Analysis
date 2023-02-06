@@ -1,0 +1,51 @@
+clear all;
+
+clc;
+
+x = [0 pi/4 pi/2];
+
+y = [0 0.707 1];
+
+n = length(x);
+
+h = x(2) - x(1);
+
+%trapizoidal method
+
+%method = (h/2)* (y1+yn) + h*(y2+......+yn-1)
+
+product = 0;
+
+for i=2:n-1
+    
+    product = product + y(i);
+    
+end
+
+I = (h/2) * (y(1) + y(n)) + h * (product)
+
+%simpson's 1/3 method
+
+%method = (h/3)*(y0+yn) + (4h/3)*(y1+y3+y5+...) + (2h/3)*(y2+y4+y6+...)
+
+productOdd = 0;
+
+productEven = 0;
+
+for i=2 : n-1
+    
+    productOdd = productOdd + y(i);
+    
+    if(i+1 < n-1)
+        
+        productEven = productEven + y(i+1);
+        
+    end
+    
+end
+
+I2 = (h/3) * (y(1) + y(n)) + (4*h/3)*(productOdd) + (2*h/3)*(productEven)
+
+disp('difference between Trapizoidal and simpsons 1/3 is : ');
+
+disp(I2 - I);

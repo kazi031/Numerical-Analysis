@@ -1,0 +1,38 @@
+clc;
+clear all;
+x=[1 2 3 4 5];
+y=[2 5 9 12 20];
+
+range=length(x);
+
+h=x(2)-x(1);
+
+x_at=3;
+
+p_val=(x_at-x(range))/h;
+
+diff_y=zeros(1,range-1);
+
+for(i=1:range-1)
+    temp=diff(y,i);
+    z=length(temp);
+    diff_y(i)=temp(z);
+end
+
+
+sum=0;
+product_p=1;
+syms p;
+
+for (i=1:range-1)
+    product_p=product_p*(p+(i-1));
+    diff_p=diff(product_p,1);
+    coeff=(diff_p*diff_y(i))/factorial(i);
+    
+    coeff_val=vpa(subs(coeff,p,p_val));
+    
+    sum=sum+coeff_val;
+    
+end
+
+disp(sum/h);

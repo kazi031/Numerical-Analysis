@@ -1,0 +1,29 @@
+%load our data
+x = [2; 3; 2; 3];
+y = [4;6;6;8];
+
+
+%n is the degree of the func, for linear it's 1
+n=1;
+%now use built in func polyfit to fit the line to our data
+% it take sin x and y matrix of x and y values. It also takes the order/degree of the equation you want to fit to the data. n is that param. 
+%it returms ao, a1.... an in p(0), p(1)..... p(n) in reverse order
+%o by simply changing n we'll get curvier ply eqns. We'll also get diffrent a0,a1....an depending on n in p matrix. 
+p = polyfit(x,y,n);
+
+%now, p(1) and p(2) will contain a1 and a0 (in reverse)
+a = p(1)
+b= p(2)
+%use a1 and a0 i.e p(1) and p(2) to form the best fit line with y = a0 + a1*x 
+regression_line= a*x+b;
+
+%now, simply plot
+% The first part x, y, 'o' plots our actual data points
+%using 'o' only gives the disconnected data points in graph, rather than a connecting a interpolated line through all of our actual data points
+%the second part x, regression_line plots the best fit line and superimposes it onto our actual data points
+plot(x,y,'o', x,regression_line)
+
+
+
+
+

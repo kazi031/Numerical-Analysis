@@ -1,0 +1,11 @@
+clc;
+clear all;
+F = @(x,y) x-y;
+x0 = 0;
+h = 0.2;
+xfinal = 0.6;
+y0 = 1;
+[x,y] = ODE1(F,x0,h,xfinal,y0);
+disp(x);
+disp(y);
+plot(x,y);
